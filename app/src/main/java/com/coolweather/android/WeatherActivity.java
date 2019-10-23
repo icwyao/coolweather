@@ -110,7 +110,9 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestWeather(weatherId);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
+                String tmp = prefs.getString("weather_id", weatherId);
+                requestWeather(tmp);
             }
         });
         String bingPic = prefs.getString("bing_pic", null);
